@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme ="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,71 +13,93 @@
 <body class="font-poppins">
     <main class="min-h-screen bg-[#010313] bg-no-repeat bg-center" style="background-image: url('images/background.png');">
         <!-- home screen -->
-        <section class="home min-h-screen text-white text-center flex justify-center items-center hidden">
+        <section id="home-section" class="home min-h-screen text-white text-center flex justify-center items-center ">
             <div class="flex flex-col items-center gap-10">
                 <h1 class="text-8xl font-anton uppercase">Alphabet Clash</h1>
                 <p>Unleash Your Keyboard Kung Fu : Press “Enter” to Play</p>
-                <button class="btn bg-white text-black">Play</button>
+                <button class="btn bg-white text-black w-1/5 text-lg"  onclick="play()">Play Now</button>
             </div>
         </section>
         <!-- play ground -->
-        <section class="play-ground">
-            <div>
+        <section id="playground-section" class="play-ground hidden">
+            <div class="flex flex-col items-center gap-20 pt-20">
                 <!-- screen -->
-                <div class="artboard artboard-horizontal phone-6 border-[20px] border-[#01031380] rounded-2xl bg-[#FFFFFFB3]">1024×320</div>
+                <div class="artboard artboard-horizontal phone-6 border-[20px] border-[#01031380] rounded-2xl bg-[#FFFFFFB3]">
+                    <div class="flex justify-center">
+                        <p class="bg-[#2F2941] text-white px-6 py-2 rounded-b-xl">Don't watch keyboard  while playing...</p>
+                    </div>
+                    <div class="flex justify-center items-center h-full">
+                        <p id="current-alphabet"  class="text-black text-9xl font-bold uppercase">Y</p>
+                    </div>
+                </div>
                 <!-- keyboard -->
                 <div>
                     <div class="flex justify-center gap-1 my-1 w-full">
-                        <kbd class="kbd">q</kbd>
-                        <kbd class="kbd">w</kbd>
-                        <kbd class="kbd">e</kbd>
-                        <kbd class="kbd">r</kbd>
-                        <kbd class="kbd">t</kbd>
-                        <kbd class="kbd">y</kbd>
-                        <kbd class="kbd">u</kbd>
-                        <kbd class="kbd">i</kbd>
-                        <kbd class="kbd">o</kbd>
-                        <kbd class="kbd">p</kbd>
+                        <kbd id="q" class="kbd">q</kbd>
+                        <kbd id="w" class="kbd">w</kbd>
+                        <kbd id="e" class="kbd">e</kbd>
+                        <kbd id="r" class="kbd">r</kbd>
+                        <kbd id="t" class="kbd">t</kbd>
+                        <kbd id="y" class="kbd">y</kbd>
+                        <kbd id="u" class="kbd">u</kbd>
+                        <kbd id="i" class="kbd">i</kbd>
+                        <kbd id="o" class="kbd">o</kbd>
+                        <kbd id="p" class="kbd">p</kbd>
                     </div> 
                     <div class="flex justify-center gap-1 my-1 w-full">
-                        <kbd class="kbd">a</kbd>
-                        <kbd class="kbd">s</kbd>
-                        <kbd class="kbd">d</kbd>
-                        <kbd class="kbd">f</kbd>
-                        <kbd class="kbd">g</kbd>
-                        <kbd class="kbd">h</kbd>
-                        <kbd class="kbd">j</kbd>
-                        <kbd class="kbd">k</kbd>
-                        <kbd class="kbd">l</kbd>
+                        <kbd id="a" class="kbd">a</kbd>
+                        <kbd id="s" class="kbd">s</kbd>
+                        <kbd id="d" class="kbd">d</kbd>
+                        <kbd id="f" class="kbd">f</kbd>
+                        <kbd id="g" class="kbd">g</kbd>
+                        <kbd id="h" class="kbd">h</kbd>
+                        <kbd id="j" class="kbd">j</kbd>
+                        <kbd id="k" class="kbd">k</kbd>
+                        <kbd id="l" class="kbd">l</kbd>
                     </div> 
                     <div class="flex justify-center gap-1 my-1 w-full">
-                        <kbd class="kbd">z</kbd>
-                        <kbd class="kbd">x</kbd>
-                        <kbd class="kbd">c</kbd>
-                        <kbd class="kbd">v</kbd>
-                        <kbd class="kbd">b</kbd>
-                        <kbd class="kbd">n</kbd>
-                        <kbd class="kbd">m</kbd>
-                        <kbd class="kbd">/</kbd>
+                        <kbd id="z" class="kbd">z</kbd>
+                        <kbd id="x" class="kbd">x</kbd>
+                        <kbd id="c" class="kbd">c</kbd>
+                        <kbd id="v" class="kbd">v</kbd>
+                        <kbd id="b" class="kbd">b</kbd>
+                        <kbd id="n" class="kbd">n</kbd>
+                        <kbd id="m" class="kbd">m</kbd>
+                        <kbd id="/" class="kbd">/</kbd>
                     </div>
                 </div>
                 <!-- life score -->
-                <div>
-                    <button class="btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                        Button
+                <div class="flex justify-between w-3/5"> 
+                     <!--display life  -->
+                    <button class="btn bg-[#894189] text-white rounded-full px-4">
+                        Life
+                        <img src="images/Vector.png" alt="">
+                        <span id="current-life" >5</span>
                       </button>
-                      <button class="btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                        Button
+                      <!-- display score -->
+                      <button class="btn bg-[#360490] text-white rounded-full">
+                        Score
+                        <img src="images/monetization_on.png" alt="">
+                        <span id="current-score">0</span>
                       </button>
                 </div>
             </div>
 
         </section>
-        <section class="score">
-            
+        <!-- Final Score -->
+        <section id="score-section" class="score min-h-screen flex items-center justify-center hidden">
+            <div class="text-white text-center space-y-6 bg-[#FFFFFF33] p-4 rounded-2xl">
+                <h4 class="text-3x">Game Over!</h4>
+                <h1 class="text-8xl">
+                    <span class="font-extrabold">Score :</span>
+                    <span id="final-score">0</span>
+                </h1>
+                <button onclick="play()" class="btn bg-white">Play Again</button>
+                <p>Practice makes you a pro</p>
+            </div>
         </section>
     </main>
+    <script src="utilities.js"></script>
+    <script src="alpha.js"></script>
 </body>
 </html>
